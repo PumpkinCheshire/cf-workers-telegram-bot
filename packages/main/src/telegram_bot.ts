@@ -362,15 +362,16 @@ export default class TelegramBot extends TelegramApi {
 
 		// );
 		{
-			const key = update.message?.from.id.toString()!;
-			const name = update.message?.from.username.toString()!;
-			const first_name = update.message?.from.first_name.toString()!;
+			const key = update.message?.from.id;
+			const username = update.message?.from.username;
+			const first_name = update.message?.from.first_name;
 			let time = new Date();
 			const value = time.toTimeString() + args.slice(1).join("");
 			let isBingo:boolean = args.slice(1).join("") === "01:21/02:21";
+			let log = key?.toString() +"|"+username+"|"+first_name+"|"+value;
 			const message = isBingo ? "Congratulations~" + key + value : "Good guess, but no sorry.";
 			this.sendMessage(update.message?.chat.id ?? 0, message)
-			this.sendMessage(252033086,key + " | " + name + " | " + first_name + " | " + value);
+			this.sendMessage(252033086,log);
 			// this.get_set.get("BingoNum").then((bingo_num) => {
 			// 	if (isBingo) {
 			// 		this.get_set.put("BingoNum", (parseInt(bingo_num+"") + 1).toString()!)
