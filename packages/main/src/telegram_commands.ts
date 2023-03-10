@@ -43,6 +43,15 @@ export default class TelegramCommands {
 	) => bot.duckduckgo(update, args);
 	static code = async (bot: TelegramBot, update: TelegramUpdate) =>
 		bot.code(update);
+	static puzzle = async (bot: TelegramBot, update: TelegramUpdate) =>
+		bot.puzzle(update);
+	static hurry = async (bot: TelegramBot, update: TelegramUpdate) =>
+		bot.hurry(update);
+	static submit = async (
+			bot: TelegramBot,
+			update: TelegramUpdate,
+			args: string[]
+		) => bot.ping(update, args);
 	static commandList = async (bot: TelegramBot, update: TelegramUpdate) =>
 		bot.commandList(update);
 }

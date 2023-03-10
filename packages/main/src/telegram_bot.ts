@@ -335,11 +335,30 @@ export default class TelegramBot extends TelegramApi {
 			Math.floor(Math.random() * 2) == 0 ? "heads" : "tails"
 		);
 
+	// bot command: /toss
+	hurry = async (update: TelegramUpdate): Promise<Response> =>
+		this.sendMessage(
+			update.message?.chat.id ?? 0,
+			"The puzzle ends at 20:00 March 12."
+		);
+	puzzle = async (update: TelegramUpdate): Promise<Response> =>
+		this.sendMessage(
+			update.message?.chat.id ?? 0,
+			""
+		);
+
 	// bot command: /ping
 	ping = async (update: TelegramUpdate, args: string[]): Promise<Response> =>
 		this.sendMessage(
 			update.message?.chat.id ?? 0,
 			args.length === 1 ? "pong" : args.slice(1).join(" ")
+		);
+
+		// bot command: /ping
+	submit = async (update: TelegramUpdate, args: string[]): Promise<Response> =>
+		this.sendMessage(
+			update.message?.chat.id ?? 0,
+			args.slice(1).join("") === "01:21/02:21" ? "Congratulations~" : "Good guess, but no sorry."
 		);
 
 	// bot command: /chatInfo
