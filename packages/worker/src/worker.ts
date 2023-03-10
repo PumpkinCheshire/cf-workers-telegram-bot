@@ -49,41 +49,5 @@ export default {
 				},
 				kv: { get_set: env.KV_GET_SET, uid_data: env.KV_UID_DATA },
 			},
-			{
-				bot_name: "@duckduckbot",
-				api: TelegramBot,
-				webhook: new TelegramWebhook(
-					new URL(
-						`https://api.telegram.org/bot${env.SECRET_TELEGRAM_API_TOKEN2}`
-					),
-					env.SECRET_TELEGRAM_API_TOKEN2,
-					new URL(new URL(request.url).origin)
-				),
-				commands: {
-					inline: TelegramCommands.duckduckgo as Command, // default inline response
-					"/duckduckgo": TelegramCommands.duckduckgo as Command,
-					"/code": TelegramCommands.code as Command,
-					"/commands": TelegramCommands.commandList as Command,
-					"/start": TelegramCommands.commandList as Command,
-				},
-			},
-			{
-				bot_name: "@ddggbot",
-				api: TelegramBot,
-				webhook: new TelegramWebhook(
-					new URL(
-						`https://api.telegram.org/bot${env.SECRET_TELEGRAM_API_TOKEN3}`
-					),
-					env.SECRET_TELEGRAM_API_TOKEN3,
-					new URL(new URL(request.url).origin)
-				),
-				commands: {
-					inline: TelegramCommands.duckduckgo as Command,
-					"/duckduckgo": TelegramCommands.duckduckgo as Command,
-					"/code": TelegramCommands.code as Command,
-					"/commands": TelegramCommands.commandList as Command,
-					"/start": TelegramCommands.commandList as Command,
-				},
-			},
 		]).handle(request),
 };

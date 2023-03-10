@@ -36,8 +36,8 @@ jobs:
           accountId: ${{ secrets.CF_ACCOUNT_ID }}
           apiToken: ${{ secrets.CF_API_TOKEN }}
           preCommands: |
-            # wrangler kv:namespace create KV_GET_SET
-            # wrangler kv:namespace create KV_UID_DATA
+            wrangler kv:namespace create KV_GET_SET
+            wrangler kv:namespace create KV_UID_DATA
             # uncomment this for one build to enable KV
             echo 'import{stdin,stdout}from"process";(async()=>{let t="";for await(const i of stdin)t+=i;return t})().then((t=>{stdout.write(JSON.stringify(JSON.parse(t).filter((t=>t.title.includes("KV_GET_SET")))[0].id))}));' > get_kv_id.mjs
             echo 'import{stdin,stdout}from"process";(async()=>{let t="";for await(const i of stdin)t+=i;return t})().then((t=>{stdout.write(JSON.stringify(JSON.parse(t).filter((t=>t.title.includes("KV_UID_DATA")))[0].id))}));' > get_kv_id2.mjs
@@ -47,9 +47,7 @@ jobs:
             [ -z "$SECRET_TELEGRAM_API_TOKEN" ] && echo "Secret SECRET_TELEGRAM_API_TOKEN not set, creating dummy one..." && SECRET_TELEGRAM_API_TOKEN="default-gh-action-secret" || true
           secrets: |
             SECRET_TELEGRAM_API_TOKEN
-            SECRET_TELEGRAM_API_TOKEN2
-            SECRET_TELEGRAM_API_TOKEN3
         env:
           SECRET_TELEGRAM_API_TOKEN: ${{ secrets.SECRET_TELEGRAM_API_TOKEN }}
-          SECRET_TELEGRAM_API_TOKEN2: ${{ secrets.SECRET_TELEGRAM_API_TOKEN2 }}
-          SECRET_TELEGRAM_API_TOKEN3: ${{ secrets.SECRET_TELEGRAM_API_TOKEN3 }}
+          # KV_GET_SET: ${{ secrets.KV_GET_SET }}
+          # KV_UID_DATA: ${{ secrets.KV_UID_DATA }}
