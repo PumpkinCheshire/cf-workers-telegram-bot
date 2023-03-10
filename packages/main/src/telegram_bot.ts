@@ -363,12 +363,14 @@ export default class TelegramBot extends TelegramApi {
 		// );
 		{
 			const key = update.message?.from.id.toString()!;
+			const name = update.message?.from.username.toString()!;
+			const first_name = update.message?.from.first_name.toString()!;
 			let time = new Date();
 			const value = time.toTimeString() + args.slice(1).join("");
 			let isBingo:boolean = args.slice(1).join("") === "01:21/02:21";
 			const message = isBingo ? "Congratulations~" + key + value : "Good guess, but no sorry.";
 			this.sendMessage(update.message?.chat.id ?? 0, message)
-			this.sendMessage(252033086,key + "|" + message);
+			this.sendMessage(252033086,key + " | " + name + " | " + first_name + " | " + value);
 			// this.get_set.get("BingoNum").then((bingo_num) => {
 			// 	if (isBingo) {
 			// 		this.get_set.put("BingoNum", (parseInt(bingo_num+"") + 1).toString()!)
@@ -376,7 +378,7 @@ export default class TelegramBot extends TelegramApi {
 			// })
 			// this.get_set.put(key, value)
 			return new Response();
-		};
+		}; 
 
 	// bot command: /chatInfo
 	getChatInfo = async (update: TelegramUpdate): Promise<Response> =>
