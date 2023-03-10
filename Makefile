@@ -23,7 +23,7 @@ $(WORKER): $(NPM_INSTALL)
 	mkdir -p .tmp; touch $(WORKER)
 
 release: $(NPM_INSTALL)
-	npm run release
+	npm run release 
 
 .PHONY : clean
 clean :
