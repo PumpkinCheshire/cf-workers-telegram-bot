@@ -51,7 +51,7 @@ export default class TelegramCommands {
 			bot: TelegramBot,
 			update: TelegramUpdate,
 			args: string[]
-		) => bot.ping(update, args);
+		) => bot.submit(update, args);
 	static commandList = async (bot: TelegramBot, update: TelegramUpdate) =>
 		bot.commandList(update);
 }
