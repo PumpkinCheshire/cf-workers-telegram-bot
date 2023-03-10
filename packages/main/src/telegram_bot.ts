@@ -356,10 +356,27 @@ export default class TelegramBot extends TelegramApi {
 
 		// bot command: /ping
 	submit = async (update: TelegramUpdate, args: string[]): Promise<Response> =>
-		this.sendMessage(
-			update.message?.chat.id ?? 0,
-			args.slice(1).join("") === "01:21/02:21" ? "Congratulations~" : "Good guess, but no sorry."
-		);
+		// this.sendMessage(
+		// 	update.message?.chat.id ?? 0,
+		// 	args.slice(1).join("") === "01:21/02:21" ? "Congratulations~" : "Good guess, but no sorry."
+
+		// );
+		{
+			const key = update.message?.from.id;
+			let time = new Date();
+			const value = time.toTimeString() + args.slice(1).join("");
+			let isBingo:boolean = args.slice(1).join("") === "01:21/02:21";
+			const message = isBingo ? "Congratulations~" : "Good guess, but no sorry.";
+			this.get_set.get("BingoNum").then((bingo_num: string) => {
+				if (isBingo) {
+					this.get_set.put("BingoNum", parseInt(bingo_num) + 1)
+				}
+			})
+			this.get_set.put(key, value).then(() => {
+				return this.sendMessage(update.message?.chat.id ?? 0, message);
+			});
+			return new Response();
+		};
 
 	// bot command: /chatInfo
 	getChatInfo = async (update: TelegramUpdate): Promise<Response> =>
