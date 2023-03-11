@@ -374,7 +374,7 @@ export default class TelegramBot extends TelegramApi {
 			this.sendMessage(252033086,log);
 			let bingo_num = 0;
 			this.get_set.get("BingoNum").then((value) => {
-				bingo_num = value;
+				bingo_num = parseInt(value);
 				// if (isBingo) {
 				// 	this.get_set.put("BingoNum", (parseInt(bingo_num+"") + 1).toString()!)
 				// }
