@@ -11,9 +11,9 @@ interface Environment {
 	KV_GET_SET: KVNamespace;
 	KV_UID_DATA: KVNamespace;
 
-	SECRET_TELEGRAM_API_TOKEN2: string;
+	// SECRET_TELEGRAM_API_TOKEN2: string;
 
-	SECRET_TELEGRAM_API_TOKEN3: string;
+	// SECRET_TELEGRAM_API_TOKEN3: string;
 }
 
 export default {

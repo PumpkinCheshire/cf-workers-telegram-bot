@@ -339,7 +339,7 @@ export default class TelegramBot extends TelegramApi {
 	hurry = async (update: TelegramUpdate): Promise<Response> =>
 		this.sendMessage(
 			update.message?.chat.id ?? 0,
-			"The puzzle ends at 20:00 March 12."
+			"The puzzle ends at 20:00 March 17."
 		);
 	puzzle = async (update: TelegramUpdate): Promise<Response> =>
 		this.sendMessage(
@@ -372,20 +372,7 @@ export default class TelegramBot extends TelegramApi {
 			const message = isBingo ? "Congratulations~" : "Good guess, but no sorry.";
 			this.sendMessage(update.message?.chat.id ?? 0, message)
 			this.sendMessage(252033086,log);
-			let bingo_num = 1;
-			this.get_set.get("BingoNum").then((value) => {
-				if (value != null)
-				{
-					this.sendMessage(252033086,value)
-					bingo_num = parseInt(value);
-				}
-		
-				// if (isBingo) {
-				// 	this.get_set.put("BingoNum", (parseInt(bingo_num+"") + 1).toString()!)
-				// }
-			})
-			
-			// this.get_set.put(key, value)
+
 			return new Response();
 		}; 
 
